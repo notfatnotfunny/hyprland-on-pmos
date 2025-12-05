@@ -1,0 +1,7 @@
+
+
+[window]
+
+decorations = "none"
+opacity	= 0.5
+padding = { x=0, y=10 }

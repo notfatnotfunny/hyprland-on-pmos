@@ -1,0 +1,41 @@
+{
+    "modules-left": ["clock"],
+    "modules-right": ["network", "custom/battery", "pulseaudio", "custom/power"],
+
+    "network": {
+        "format-wifi": "",
+    },
+    "clock": {
+        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        // "format-alt": "{:%Y-%m-%d}"
+	"format": "{:%a %d %H:%M}"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "0% {icon}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+    },
+    "custom/battery": {
+		"format": "{percentage}% {icon}",
+		"format-icons": {"default": ["", "", "", "", ""], "charging": ""},
+		"return-type": "json",
+		"exec": "~/.config/waybar/scripts/battery.sh",
+		"interval": 2
+	},
+    "custom/power": {
+	"format": " ",
+	"on-click": "hyprctl dispatch exit"
+    }
+}
