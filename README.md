@@ -11,6 +11,6 @@ On a fresh installation of pmOS you can run
       
 To update run
    
-   `sudo ./hyprupdate.sh`
+   `sudo ./hyprupdater.sh`
       
 
