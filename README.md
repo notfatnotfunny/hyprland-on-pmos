@@ -13,8 +13,16 @@ Build Hyprland on PostmarketOs from git source. The packaged version in pmos is 
 - for the rest of my installation:
 ```sudo apk add slurp grim wl-clipboard glm-dev gtkmm4-dev gtk4-layer-shell-dev alacritty waybar hypridle swaybg jq hyprlock dunst```
 
-   `doas ./hyprinstaller.sh`
+Then to run the installer:
+
+`cd hyprland-on-pmos`
+`doas chmod +x hyprinstaller.sh`
+`cd ..`
+`doas hyprland-on-pmos/hyprinstaller.sh`
       
-To update run
+To update:
    
-   `doas ./hyprupdater.sh`
+`cd hyprland-on-pmos`
+`doas chmod +x hyprupdater.sh`
+`cd ..`
+`doas hyprland-on-pmos/hyprupdater.sh`

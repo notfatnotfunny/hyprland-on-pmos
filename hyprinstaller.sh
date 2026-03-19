@@ -1,47 +1,81 @@
+#!/usr/bin/env bash
 
-# [build from source]
+set -euo pipefail
+
+error() {
+    echo "Error: script failed at line $1" >&2
+    # cleanup here if needed
+    exit 1
+}
+trap 'error $LINENO' ERR
+
+echo "Building Hyprland from source..."
 
 
 # hyprutils
-git clone https://github.com/hyprwm/hyprutils.git
+if [ ! -d hyprutils ]; then
+	git clone https://github.com/hyprwm/hyprutils.git &>/dev/null
+fi
 cd hyprutils/
-cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INFO_PREFIX:PATH=/usr -S . -B ./build
 cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
 sudo cmake --install build
 cd ..
+
+echo "[INFO] Hyprland: hyprutils installed successfully"
 
 # hyprgraphics
-git clone https://github.com/hyprwm/hyprgraphics
+if [ ! -d hyprgraphics ]; then
+	git clone https://github.com/hyprwm/hyprgraphics &>/dev/null
+fi
 cd hyprgraphics/
-cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INFO_PREFIX:PATH=/usr -S . -B ./build
 cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
 sudo cmake --install build
 cd ..
 
+echo "[INFO] Hyprland: hyprgraphics installed successfully"
+
 # seatd
-git clone https://git.sr.ht/~kennylevinsen/seatd
+if [ ! -d seatd ]; then
+	git clone https://git.sr.ht/~kennylevinsen/seatd &>/dev/null
+fi
 cd seatd
 meson setup build
 ninja -C build
 sudo ninja -C build install
 cd ..
 
+echo "[INFO] Hyprland: seatd installed successfully"
+
 # hyprtoolkit
-git clone 
+if [ ! -d hyprtoolkit ]; then
+	git clone https://github.com/hyprwm/hyprtoolkit.git &>/dev/null
+fi
 cd hyprtoolkit
-cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INFO_PREFIX:PATH=/usr -S . -B ./build
 cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
 sudo cmake --install ./build
 cd ..
 
-git clone https://github.com/hyprwm/hyprwayland-scanner.git
+echo "[INFO] Hyprland: hyprtoolkit installed successfully"
+
+# hyprwayland-scanner
+if [ ! -d hyprwayland ]; then
+	git clone https://github.com/hyprwm/hyprwayland-scanner.git &>/dev/null 
+fi
 cd hyprwayland-scanner
-cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
+cmake -DCMAKE_INFO_PREFIX=/usr -B build
 cmake --build build -j `nproc`
 sudo cmake --install build
 cd ..
 
-git clone https://github.com/hyprwm/aquamarine.git
+echo "[INFO] Hyprland: hyprwayland-scanner installed successfully"
+
+# aquamarine
+if [ ! -d aquamarine ]; then
+	git clone https://github.com/hyprwm/aquamarine.git &>/dev/null 
+fi
 cd aquamarine
 
 tmp=$(mktemp)
@@ -63,28 +97,41 @@ mv "$tmp" CMakeLists.txt
 #   target_link_libraries(aquamarine PRIVATE GLESv2 EGL PkgConfig::deps)
 
 
-cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INFO_PREFIX:PATH=/usr -S . -B ./build
 cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
 sudo cmake --install build
 cd ..
 
-git clone https://github.com/hyprwm/hyprlang.git
+echo "[INFO] Hyprland: aquamarine installed successfully"
+
+# hyprlang
+if [ ! -d hyprlang ]; then
+	git clone https://github.com/hyprwm/hyprlang.git &>/dev/null 
+fi
 cd hyprlang
-cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INFO_PREFIX:PATH=/usr -S . -B ./build
 cmake --build ./build --config Release --target hyprlang -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
 sudo cmake --install ./build
 cd ..
 
+echo "[INFO] Hyprland: hyprlang installed successfully"
 
-git clone https://github.com/hyprwm/hyprcursor.git
+# hyprcursor
+if [ ! -d hyprcursor ]; then
+	git clone https://github.com/hyprwm/hyprcursor.git &>/dev/null
+fi
 cd hyprcursor
-cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INFO_PREFIX:PATH=/usr -S . -B ./build
 cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
 sudo cmake --install build
 cd ..
 
+echo "[INFO] Hyprland: hyprcursor installed successfully"
 
-git clone https://gitlab.freedesktop.org/wayland/wayland-protocols.git
+# wayland-protocols
+if [ ! -d wayland ]; then
+	git clone https://gitlab.freedesktop.org/wayland/wayland-protocols.git &>/dev/null 
+fi
 cd wayland-protocols
 mkdir build
 cd build
@@ -93,8 +140,12 @@ ninja
 sudo ninja install
 cd ../..
 
+echo "[INFO] Hyprland: wayland-protocols installed successfully"
 
-git clone https://github.com/xkbcommon/libxkbcommon.git
+# libxkbcommon
+if [ ! -d libxkbcommon ]; then
+	git clone https://github.com/xkbcommon/libxkbcommon.git &>/dev/null 
+fi
 cd libxkbcommon
 meson setup build \
       -Denable-x11=false \
@@ -104,17 +155,24 @@ meson compile -C build
 sudo meson install -C build
 cd ..
 
-#hyprwire
-git clone https://github.com/hyprwm/hyprwire.git
+echo "[INFO] Hyprland: libxkbcommon installed successfully"
+
+# hyprwire
+if [ ! -d hyprwire ]; then
+	git clone https://github.com/hyprwm/hyprwire.git &>/dev/null 
+fi
 cd hyprwire
-cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INFO_PREFIX:PATH=/usr -S . -B ./build
 cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
 sudo cmake --install build
 cd ..
 
+echo "[INFO] Hyprland: hyprwire installed successfully"
 
 # glaze
-git clone https://github.com/stephenberry/glaze.git
+if [ ! -d glaze ]; then
+	git clone https://github.com/stephenberry/glaze.git &>/dev/null 
+fi
 cd glaze
 sudo systemctl start docker
 sudo docker pull ubuntu:24.04
@@ -135,47 +193,62 @@ cp -r install/include/* /usr/local/include/
 cp -r install/share/* /usr/local/share/
 cd ..
 
+echo "[INFO] Hyprland: glaze installed successfully"
 
 # Hyprland
-git clone https://github.com/hyprwm/Hyprland.git
+if [ ! -d Hyprland ]; then
+	git clone https://github.com/hyprwm/Hyprland.git &>/dev/null 
+fi
 cd Hyprland
 make all
 sudo make install
 cd ..
 
+echo "[INFO] Hyprland: Hyprland installed successfully"
 
 
 
-# cool stuff that works well with hyprland
+echo "Building additional utils..."
 
 # wvkbd
-git clone https://github.com/jjsullivan5196/wvkbd.git
+if [ ! -d wvkbd ]; then
+	git clone https://github.com/jjsullivan5196/wvkbd.git &>/dev/null
+fi
 cd wvkbd
 make
 sudo make install
 cd ..
 
+echo "[INFO] utilities: wvkbd installed successfully"
 
 # sysmenu
-sudo apk add gtkmm4-dev gtk4-layer-shell-dev
-git clone https://github.com/System64fumo/sysmenu.git
+if [ ! -d sysmenu ]; then
+	git clone https://github.com/System64fumo/sysmenu.git &>/dev/null
+fi
 cd sysmenu
 make
 sudo make install
 cd ..
-mkdir /home/$USER/.config/sys64/menu/
-# config.conf and style.css
 
-# hyprgrass plugin
-sudo apk add glm-dev
-hyprpm update --no-shallow
-hyprpm add https://github.com/horriblename/hyprgrass.git
-hyprpm enable hyprgrass
-hyprpm reload
+echo "[INFO] utilities: sysmenu installed successfully"
+
+# # hyprgrass plugin
+# hyprpm update --no-shallow
+# hyprpm add https://github.com/horriblename/hyprgrass.git
+# hyprpm enable hyprgrass
+# hyprpm reload
 
 # hyprshot
-sudo apk add slurp grim wl-clipboard
-git clone https://github.com/Gustash/hyprshot.git Hyprshot
+if [ ! -d -s ]; then
+	git clone https://github.com/Gustash/hyprshot.git Hyprshot &>/dev/null
+fi
 ln -s $(pwd)/Hyprshot/hyprshot /usr/bin/hyprshot
 sudo chmod +x Hyprshot/hyprshot
 
+echo "[INFO] utilities: hyprshot installed successfully"
+
+echo "[INFO] configuration: copying the configuration..."
+
+cp -rf hyprland-on-pmos/dots/* ~/.config/
+
+echo "the installation is complete!"
