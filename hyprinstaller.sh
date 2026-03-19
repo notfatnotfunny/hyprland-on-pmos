@@ -1,11 +1,3 @@
-# lisgd
-# seatd
-# hyprtoolkit          
-
-
-
-
-
 
 # [build from source]
 
@@ -26,6 +18,21 @@ cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getc
 sudo cmake --install build
 cd ..
 
+# seatd
+git clone https://git.sr.ht/~kennylevinsen/seatd
+cd seatd
+meson setup build
+ninja -C build
+sudo ninja -C build install
+cd ..
+
+# hyprtoolkit
+git clone 
+cd hyprtoolkit
+cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+cmake --build ./build --config Release --target all -j`nproc 2>/dev/null || getconf NPROCESSORS_CONF`
+sudo cmake --install ./build
+cd ..
 
 git clone https://github.com/hyprwm/hyprwayland-scanner.git
 cd hyprwayland-scanner
@@ -106,14 +113,27 @@ sudo cmake --install build
 cd ..
 
 
-# # glaze
-# git clone https://github.com/stephenberry/glaze.git
-# cd glaze
-# docker run ubuntu 24.04
-# sudo make
-# sudo make install
-# exit
-# cd ..
+# glaze
+git clone https://github.com/stephenberry/glaze.git
+cd glaze
+sudo systemctl start docker
+sudo docker pull ubuntu:24.04
+sudo docker run --rm \
+  --network host \
+  -v $(pwd):/src \
+  -w /src \
+  ubuntu:24.04 bash -c "
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y cmake g++ ninja-build libasan8 openssl libssl-dev && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make -j\$(nproc) && \
+    cmake --install . --prefix /src/install
+  "
+cp -r install/include/* /usr/local/include/
+cp -r install/share/* /usr/local/share/
+cd ..
 
 
 # Hyprland
@@ -127,13 +147,6 @@ cd ..
 
 
 # cool stuff that works well with hyprland
-#
-# packaged
-sudo apk add alacritty waybar hypridle swaybg jq hyprlock dunst
-
-
-
-# to build
 
 # wvkbd
 git clone https://github.com/jjsullivan5196/wvkbd.git
@@ -166,12 +179,3 @@ git clone https://github.com/Gustash/hyprshot.git Hyprshot
 ln -s $(pwd)/Hyprshot/hyprshot /usr/bin/hyprshot
 sudo chmod +x Hyprshot/hyprshot
 
-
-# squeekboard didn't work for me
-sudo apk add rustc-dev cargo gnome-desktop-dev libbsd-dev feedbackd-dev
-git clone https://gitlab.gnome.org/World/Phosh/squeekboard.git
-cd squeekboard
-mkdir _build
-meson setup _build/
-cd _build
-ninja
