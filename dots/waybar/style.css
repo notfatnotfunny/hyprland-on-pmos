@@ -15,14 +15,14 @@ window#waybar {
 /*-----module groups----*/
 .modules-right {
 	background-color: rgba(0,43,51,0.85);
-    margin: 10px 15px 0 0;
+    margin: 0 15px 0 0;
 }
-/* .modules-center { */
-/* 	background-color: rgba(0,43,51,0.85); */
-/*     margin: 2px 0 0 0; */
-/* } */
+.modules-center {
+	background-color: rgba(0,43,51,0.85);
+    margin: 0 0 0 0;
+}
 .modules-left {
-    margin: 10px 0 0 15px;
+    margin: 0 0 0 15px;
 	background-color: rgba(0,119,179,0.6);
 }
 /*-----modules indv----*/
@@ -40,6 +40,7 @@ window#waybar {
 }
 
 #clock,
+#custom-fullscreen,
 #battery,
 #cpu,
 #memory,
@@ -54,6 +55,11 @@ window#waybar {
 #idle_inhibitor {
     margin: 5px 5px;
     padding: 1px 1px 1px 3px
+}
+#custom-kill,
+#custom-home,
+#custom-switch {
+	padding: 10px 18px;
 }
 #mode {
     color: #cc3436;

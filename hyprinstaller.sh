@@ -1,13 +1,6 @@
-
-
-
-
-
-
-sudo apk add git cmake meson pixman-dev cairo-dev pango-dev libjpeg-turbo-dev libwebp-dev librsvg-dev file-dev udis86-git-dev mesa-egl mesa-gles mesa-dev pugixml-dev libseat-dev libinput-dev wayland-dev wayland-protocols-dev libdisplay-info-dev hwdata-dev libzip-dev tomlplusplus-dev bison libxcursor-dev re2-dev muparser-dev xcb-util-wm-dev xcb-util-errors-dev cpio libxcomposite-dev xcb-util-keysyms xcb-util-keysyms-dev libliftoff cpio glaze hyprland-protocols hyprland-qtutils
-
-
-
+# lisgd
+# seatd
+# hyprtoolkit          
 
 
 
@@ -113,12 +106,22 @@ sudo cmake --install build
 cd ..
 
 
+# # glaze
+# git clone https://github.com/stephenberry/glaze.git
+# cd glaze
+# docker run ubuntu 24.04
+# sudo make
+# sudo make install
+# exit
+# cd ..
+
+
 # Hyprland
 git clone https://github.com/hyprwm/Hyprland.git
 cd Hyprland
 make all
 sudo make install
-
+cd ..
 
 
 

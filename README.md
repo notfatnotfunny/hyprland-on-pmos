@@ -1,16 +1,17 @@
 # hyprland-on-pmos
-Utilities to build Hyprland (yes, https://hypr.land) on postmarketOS (you heard me, https://postmarketos.org).
+Build Hyprland on PostmarketOs from git source. The packaged version in pmos is old and doesn't support some of the new features shipped with more recent versions.
 
 
-## Usage
+## Installation
 
-First of all your pmOS device *must* use openrc as a service manager (systemd conflicts with some libraries eg. libinput).
-On a fresh installation of pmOS you can run
+~~First of all your pmOS device *must* use openrc as a service manager (systemd conflicts with some libraries eg. libinput).~~
 
-   `sudo ./hyprinstaller.sh`
+Dependecies:
+
+`doas apk add git cmake meson pixman-dev cairo-dev pango-dev libjpeg-turbo-dev libwebp-dev librsvg-dev file-dev udis86-git-dev mesa-egl mesa-gles mesa-dev pugixml-dev libseat-dev libinput-dev wayland-dev wayland-protocols-dev libdisplay-info-dev hwdata-dev libzip-dev tomlplusplus-dev bison libxcursor-dev re2-dev muparser-dev xcb-util-wm-dev xcb-util-errors-dev cpio libxcomposite-dev xcb-util-keysyms xcb-util-keysyms-dev libliftoff cpio hyprland-protocols hyprland-qtutils`
+
+   `doas ./hyprinstaller.sh`
       
 To update run
    
-   `sudo ./hyprupdater.sh`
-      
-
+   `doas ./hyprupdater.sh`

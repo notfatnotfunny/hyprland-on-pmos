@@ -1,41 +1,71 @@
-{
-    "modules-left": ["clock"],
-    "modules-right": ["network", "custom/battery", "pulseaudio", "custom/power"],
+[{
+	"layer": "top",
+	"position": "top",
+	"margin": "10 0 0 0",
+	"modules-left": ["clock", "custom/fullscreen"],
+	"modules-right": ["network", "custom/battery", "pulseaudio", "custom/power"],
 
-    "network": {
-        "format-wifi": "",
-    },
-    "clock": {
-        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        // "format-alt": "{:%Y-%m-%d}"
-	"format": "{:%a %d %H:%M}"
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "0% {icon}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-    },
-    "custom/battery": {
+	"network": {
+		"format-wifi": "",
+	},
+	"clock": {
+		// "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		// "format-alt": "{:%Y-%m-%d}"
+		"format": "{:%a %d %H:%M}"
+	},
+	"custom/fullscreen": {
+		"format": "",
+		"on-click": "hyprctl dispatch fullscreen"
+	},
+	"pulseaudio": {
+		"format": "{volume}% {icon}",
+		"format-bluetooth": "{volume}% {icon} {format_source}",
+		"format-bluetooth-muted": " {icon} {format_source}",
+		"format-muted": "0% {icon}",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", "", ""]
+		},
+	},
+	"custom/battery": {
 		"format": "{percentage}% {icon}",
 		"format-icons": {"default": ["", "", "", "", ""], "charging": ""},
 		"return-type": "json",
 		"exec": "~/.config/waybar/scripts/battery.sh",
 		"interval": 2
 	},
-    "custom/power": {
-	"format": " ",
-	"on-click": "hyprctl dispatch exit"
-    }
+	"custom/power": {
+		"format": " ",
+		"on-click": "hyprctl dispatch exit"
+	}
+},
+{
+	"layer": "top",
+	"position": "bottom",
+	"margin": "0 30 5 30",
+	"fixed-center": "true",
+	"modules-left": ["custom/switch"],
+	"modules-center": ["custom/home"],
+	"modules-right": ["custom/kill"],
+	"custom/switch": {
+		"format": "",
+		"on-click": "switch"
+	},
+	"custom/home": {
+		"format": "",
+		"on-click": "pidof sysmenu && pkill -RTMIN sysmenu || sysmenu"
+	},
+	"custom/kill": {
+		"format": "",
+		"on-click": "hyprctl dispatch killactive"
+	},
+
 }
+]
