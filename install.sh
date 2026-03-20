@@ -303,8 +303,9 @@ echo "[INFO] utilities: hyprshot installed successfully"
 echo "[INFO] configuration: copying the configuration..."
 
 cp -rf hyprland-on-pmos/dots/* .config/
+sudo chown -R $USER .config/hypr/scripts/
 sudo chmod +x .config/hypr/scripts/*.sh
 sudo chmod +x .config/waybar/scripts/*.sh
-
+ln -sf .config/hypr/scripts/volume.conf .config/hypr/scripts/active.conf
 echo "the installation is complete!"
 
