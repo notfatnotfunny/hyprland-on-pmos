@@ -56,7 +56,7 @@
 	"modules-right": ["custom/kill"],
 	"custom/switch": {
 		"format": "",
-		"on-click": "switch"
+		"on-click": "~/.config/hypr/scripts/switch.sh"
 	},
 	"custom/home": {
 		"format": "",

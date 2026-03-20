@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 status_=$(cat /sys/class/power_supply/bq27411-0/status)
 
