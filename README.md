@@ -1,6 +1,10 @@
 # hyprland-on-pmos
 Build Hyprland on PostmarketOs from git source. The version packaged in pmos is fairly old and doesn't support some of the new features shipped with newer versions. For instance you can now interact with a layer in the lockscreen by setting the [layer rule](https://wiki.hypr.land/Configuring/Window-Rules/) `above_lock` to 2; this allows you to use any screen locker that supports the `ext-session-lock protocol`, like [hyprlock](https://github.com/hyprwm/hyprlock.git), and unlock your device using an OSK (effectively a layer in hyprland), like [wvkbd](https://github.com/jjsullivan5196/wvkbd.git).
 
+## Showcase
+
+<img src="./assets/hyprshot.png" width=300 \> <img src="./assets/hyprshot1.png" width=300 \> <img src="./assets/hyprshot2.png" width=300 \> <img src="./assets/hyprshot3.png" width=300 \>
+
 ## Installation
 
 ~~First of all your pmOS device *must* use openrc as a service manager (systemd conflicts with some libraries eg. libinput).~~
