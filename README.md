@@ -3,7 +3,7 @@ Build Hyprland on PostmarketOs from git source. The version packaged in pmos is 
 
 ## Showcase
 
-<img src="./assets/hyprshot.png" width=300 /> <img src="./assets/hyprshot1.png" width=300 /> <img src="./assets/hyprshot2.png" width=300 /> <img src="./assets/hyprshot3.png" width=300 />
+<img src="./assets/hyprshot.png" width=250 /> <img src="./assets/hyprshot1.png" width=250 /> <img src="./assets/hyprshot2.png" width=250 /> <img src="./assets/hyprshot3.png" width=250 />
 
 ## Installation
 
