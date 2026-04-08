@@ -44,9 +44,8 @@ sudo chmod +x .config/hypr/scripts/*.sh
 sudo chmod +x .config/waybar/scripts/*.sh
 ln -sf .config/hypr/scripts/volume.conf .config/hypr/scripts/active.conf
 # allow $USER to use brightnessctl w/o root privileges
-su $USER
 sudo usermod -aG video $USER
-exit
+# log out and log back in
 ```
 - To update:
 ```sh
