@@ -37,17 +37,6 @@ cd ~/hyprland-on-pmos
 sudo chmod +x install_config.sh
 cd ..
 sudo hyprland-on-pmos/install_config.sh
-# copy config files + make the scripts executable + add symlink for switch.sh
-cp -rf hyprland-on-pmos/dots/* .config/
-sudo chown -R $USER .config/hypr/scripts/
-sudo chmod +x .config/hypr/scripts/*.sh
-sudo chmod +x .config/waybar/scripts/*.sh
-ln -sf .config/hypr/scripts/volume.conf .config/hypr/scripts/active.conf
-# allow $USER to use brightnessctl w/o root privileges if needed
-sudo usermod -aG video $USER
-sudo chmod g+w /sys/class/backlight/*/brightness
-sudo chgrp video /sys/class/backlight/*/brightness
-# log out and log back in 2bsure
 ```
 - To update:
 ```sh
