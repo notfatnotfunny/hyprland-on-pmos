@@ -13,6 +13,13 @@ elif grep "brightnessctl" "$CURR" &>/dev/null; then
 	notify-send "volume mode"
 else 
 	echo "exception: $CURR is linked to neither $VOL nor $BRI"
+	notify-send "exception: $CURR isn't readable for some reason [maybe it doesn't exist]. Creatig the default link to $VOL"
+	ln -sf "$VOL" "$CURR"
+	if grep "pactl" "$CURR" &>/dev/null; then
+		notifiy-send "the link is now working!"
+	else
+		notify-send "the link is not working :("
+	fi
 fi
 
 
