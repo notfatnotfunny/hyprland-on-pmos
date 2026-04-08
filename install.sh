@@ -14,7 +14,7 @@ echo "Building Hyprland from source..."
 
 # hyprutils
 if [ ! -d hyprutils ]; then
-	git clone https://github.com/hyprwm/hyprutils.git &>/dev/null
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/hyprutils.git &>/dev/null
 fi
 if ! pkg-config --exists hyprutils; then
 	cd hyprutils/
@@ -28,7 +28,7 @@ echo "[INFO] Hyprland: hyprutils installed successfully"
 
 # hyprgraphics
 if [ ! -d hyprgraphics ]; then
-	git clone https://github.com/hyprwm/hyprgraphics &>/dev/null
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/hyprgraphics &>/dev/null
 fi
 if ! pkg-config --exists hyprgraphics; then
 	cd hyprgraphics/
@@ -42,7 +42,7 @@ echo "[INFO] Hyprland: hyprgraphics installed successfully"
 
 # seatd
 if [ ! -d seatd ]; then
-	git clone https://git.sr.ht/~kennylevinsen/seatd &>/dev/null
+	sudo -u $SUDO_USER git clone https://git.sr.ht/~kennylevinsen/seatd &>/dev/null
 fi
 if [ ! -f /usr/local/bin/seatd ]; then
 	cd seatd
@@ -56,7 +56,7 @@ echo "[INFO] Hyprland: seatd installed successfully"
 
 # hyprwayland-scanner
 if [ ! -d hyprwayland-scanner ]; then
-	git clone https://github.com/hyprwm/hyprwayland-scanner.git &>/dev/null 
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/hyprwayland-scanner.git &>/dev/null 
 fi
 if ! pkg-config --exists hyprwayland-scanner; then
 	cd hyprwayland-scanner
@@ -70,7 +70,7 @@ echo "[INFO] Hyprland: hyprwayland-scanner installed successfully"
 
 # aquamarine
 if [ ! -d aquamarine ]; then
-	git clone https://github.com/hyprwm/aquamarine.git &>/dev/null 
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/aquamarine.git &>/dev/null 
 fi
 if ! pkg-config --exists aquamarine; then
 	cd aquamarine
@@ -99,7 +99,7 @@ echo "[INFO] Hyprland: aquamarine installed successfully"
 
 # hyprlang
 if [ ! -d hyprlang ]; then
-	git clone https://github.com/hyprwm/hyprlang.git &>/dev/null 
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/hyprlang.git &>/dev/null 
 fi
 if ! pkg-config --exists hyprlang; then
 	cd hyprlang
@@ -113,7 +113,7 @@ echo "[INFO] Hyprland: hyprlang installed successfully"
 
 # hyprtoolkit
 if [ ! -d hyprtoolkit ]; then
-	git clone https://github.com/hyprwm/hyprtoolkit.git &>/dev/null
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/hyprtoolkit.git &>/dev/null
 fi
 if ! pkg-config --exists hyprtoolkit; then
 	cd hyprtoolkit
@@ -142,7 +142,7 @@ echo "[INFO] Hyprland: hyprtoolkit installed successfully"
 
 # hyprcursor
 if [ ! -d hyprcursor ]; then
-	git clone https://github.com/hyprwm/hyprcursor.git &>/dev/null
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/hyprcursor.git &>/dev/null
 fi
 if ! pkg-config --exists hyprcursor; then
 	cd hyprcursor
@@ -156,7 +156,7 @@ echo "[INFO] Hyprland: hyprcursor installed successfully"
 
 # wayland-protocols
 if [ ! -d wayland-protocols ]; then
-	git clone https://gitlab.freedesktop.org/wayland/wayland-protocols.git &>/dev/null 
+	sudo -u $SUDO_USER git clone https://gitlab.freedesktop.org/wayland/wayland-protocols.git &>/dev/null 
 fi
 if ! pkg-config --exists wayland-protocols; then
 	cd wayland-protocols
@@ -172,7 +172,7 @@ echo "[INFO] Hyprland: wayland-protocols installed successfully"
 
 # libxkbcommon
 if [ ! -d libxkbcommon ]; then
-	git clone https://github.com/xkbcommon/libxkbcommon.git &>/dev/null 
+	sudo -u $SUDO_USER git clone https://github.com/xkbcommon/libxkbcommon.git &>/dev/null 
 fi
 if [ ! -f /usr/local/lib/libxkbcommon.so ]; then
 	cd libxkbcommon
@@ -189,7 +189,7 @@ echo "[INFO] Hyprland: libxkbcommon installed successfully"
 
 # hyprwire
 if [ ! -d hyprwire ]; then
-	git clone https://github.com/hyprwm/hyprwire.git &>/dev/null 
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/hyprwire.git &>/dev/null 
 fi
 if ! pkg-config --exists hyprwire; then
 	cd hyprwire
@@ -203,7 +203,7 @@ echo "[INFO] Hyprland: hyprwire installed successfully"
 
 # glaze
 if [ ! -d glaze ]; then
-	git clone https://github.com/stephenberry/glaze.git &>/dev/null 
+	sudo -u $SUDO_USER git clone https://github.com/stephenberry/glaze.git &>/dev/null 
 fi
 if [ ! -f /usr/local/include/glaze/glaze.hpp ]; then
 	cd glaze
@@ -231,7 +231,7 @@ echo "[INFO] Hyprland: glaze installed successfully"
 
 # Hyprland
 if [ ! -d Hyprland ]; then
-	git clone https://github.com/hyprwm/Hyprland.git &>/dev/null 
+	sudo -u $SUDO_USER git clone https://github.com/hyprwm/Hyprland.git &>/dev/null 
 fi
 if [ ! -f /usr/local/bin/hyprland ]; then
 	cd Hyprland
