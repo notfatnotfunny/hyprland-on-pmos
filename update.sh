@@ -9,8 +9,8 @@ error() {
 }
 trap 'error $LINENO' ERR
 
-doas apk update
-doas apk upgrade
+sudo apk update
+sudo apk upgrade
 
 echo "Updating Hyprland..."
 
@@ -272,12 +272,6 @@ if [ -d sysmenu ]; then
 fi
 
 echo "[INFO] utilities: sysmenu updated successfully"
-
-# # hyprgrass plugin
-# hyprpm update --no-shallow
-# hyprpm add https://github.com/horriblename/hyprgrass.git
-# hyprpm enable hyprgrass
-# hyprpm reload
 
 # hyprshot
 if [ -d Hyprshot ]; then
