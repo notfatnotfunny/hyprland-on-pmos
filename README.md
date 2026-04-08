@@ -26,16 +26,17 @@ sudo apk add slurp grim wl-clipboard glm-dev gtkmm4-dev gtk4-layer-shell-dev ala
 
 - To install Hyprland:
 ```sh
-cd hyprland-on-pmos
-doas chmod +x install.sh
+cd ~/hyprland-on-pmos
+sudo chmod +x install.sh
 cd ..
-doas hyprland-on-pmos/hyprinstaller.sh
+sudo hyprland-on-pmos/hyprinstaller.sh
 ```
 - To install utilities and apply my config: 
 ```sh
-doas chmod +x install_config.sh
+cd ~/hyprland-on-pmos
+sudo chmod +x install_config.sh
 cd ..
-doas hyprland-on-pmos/install_config.sh
+sudo hyprland-on-pmos/install_config.sh
 # copy config files + make the scripts executable + add symlink for switch.sh
 cp -rf hyprland-on-pmos/dots/* .config/
 sudo chown -R $USER .config/hypr/scripts/
@@ -44,15 +45,15 @@ sudo chmod +x .config/waybar/scripts/*.sh
 ln -sf .config/hypr/scripts/volume.conf .config/hypr/scripts/active.conf
 # allow $USER to use brightnessctl w/o root privileges
 su $USER
-doas usermod -aG video $USER
+sudo usermod -aG video $USER
 exit
 ```
 - To update:
 ```sh
-cd hyprland-on-pmos
-doas chmod +x hyprupdater.sh
+cd ~/hyprland-on-pmos
+sudo chmod +x hyprupdater.sh
 cd ..
-doas hyprland-on-pmos/update.sh
+sudo hyprland-on-pmos/update.sh
 ```
 
 ## Additional notes
