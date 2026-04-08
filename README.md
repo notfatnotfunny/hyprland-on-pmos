@@ -43,9 +43,11 @@ sudo chown -R $USER .config/hypr/scripts/
 sudo chmod +x .config/hypr/scripts/*.sh
 sudo chmod +x .config/waybar/scripts/*.sh
 ln -sf .config/hypr/scripts/volume.conf .config/hypr/scripts/active.conf
-# allow $USER to use brightnessctl w/o root privileges
+# allow $USER to use brightnessctl w/o root privileges if needed
 sudo usermod -aG video $USER
-# log out and log back in
+sudo chmod g+w /sys/class/backlight/*/brightness
+sudo chgrp video /sys/class/backlight/*/brightness
+# log out and log back in 2bsure
 ```
 - To update:
 ```sh
