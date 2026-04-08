@@ -309,5 +309,11 @@ cp -rf hyprland-on-pmos/dots/* .config/
 sudo chown -R $USER .config/hypr/scripts/
 sudo chmod +x .config/hypr/scripts/*.sh
 sudo chmod +x .config/waybar/scripts/*.sh
+
+# allow $USER to use brightnessctl w/o root privileges if needed
+sudo usermod -aG video $USER
+sudo chmod g+w /sys/class/backlight/*/brightness
+sudo chgrp video /sys/class/backlight/*/brightness
+echo "you might have to log out and log back in in order for this to work"
 echo "the installation is complete!"
 
