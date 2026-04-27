@@ -11,6 +11,7 @@ trap 'error $LINENO' ERR
 
 echo "Building Hyprland from source..."
 
+sudo ln -s /usr/lib/pkgconfig/lua-5.5.pc /usr/lib/pkgconfig/lua55.pc
 
 # hyprutils
 if [ ! -d hyprutils ]; then
