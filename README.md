@@ -35,7 +35,7 @@ sudo hyprland-on-pmos/hyprinstaller.sh
 cd ~/hyprland-on-pmos
 sudo chmod +x install_config.sh
 cd ..
-sudo hyprland-on-pmos/install_config.sh
+hyprland-on-pmos/install_config.sh
 ```
 - To update:
 ```sh
